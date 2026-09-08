@@ -35,9 +35,6 @@ Historically, operators used the more complex network attachment definitions (NA
 ### Real-world Use Cases
 
 Multitenant isolation:
-
 Multinamespace connectivity:
-
 Overlapping IP address ranges:
-
 Persistent IP addresses for virtual machines:
