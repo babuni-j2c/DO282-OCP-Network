@@ -109,3 +109,25 @@ $ oc exec -it sample-pod -- ip addr
     inet 192.168.100.5/24 brd 192.168.100.255 scope global net1
     ...output omitted...
 ```
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: multus-2-pod
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: multus-2-pod
+  template:
+    metadata:
+      labels:
+        app: multus-2-pod
+      annotations:
+        k8s.v1.cni.cncf.io/networks: storage-network  
+    spec:
+      containers:
+      - name: ubi-container
+```
