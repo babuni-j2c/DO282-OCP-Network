@@ -41,3 +41,49 @@ Multinamespace connectivity:
 Overlapping IP address ranges:
 
 Persistent IP addresses for virtual machines:
+
+## UDN layer3
+```
+apiVersion: k8s.ovn.org/v1
+kind: UserDefinedNetwork
+metadata:
+  name: my-l3-network
+  namespace: my-project
+spec:
+  topology: Layer3 
+  layer3:
+    role: Primary 
+    subnets:
+    - cidr: 10.0.1.0/24 
+      hostSubnet: 24 
+```
+
+## UDN layer2
+```
+apiVersion: k8s.ovn.org/v1
+kind: UserDefinedNetwork
+metadata:
+  name: my-l2-network
+  namespace: my-project
+spec:
+  topology: Layer2
+  layer2:
+    role: Primary
+    subnets:
+      - "10.200.0.0/16"
+    ipam:
+      lifecycle: Persistent
+```
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-app
+  namespace: my-project
+  annotations:
+    k8s.v1.cni.cncf.io/networks: my-l3-network 
+spec:
+  containers:
+  - name: my-app-container
+    image: my-app-image
+```
