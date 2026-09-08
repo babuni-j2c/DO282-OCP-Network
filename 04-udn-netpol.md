@@ -31,3 +31,13 @@ Live migration of virtual machines presents challenges because the pod IP addres
 ```
 Historically, operators used the more complex network attachment definitions (NADs) for secondary networks. These NADs required additional operator management, and offered limited status reporting.
 ```
+
+### Real-world Use Cases
+
+Multitenant isolation:
+
+Multinamespace connectivity:
+
+Overlapping IP address ranges:
+
+Persistent IP addresses for virtual machines:
