@@ -55,6 +55,17 @@ primary network as a Layer 2 network to ensure proper routing, addressing, and i
 network for VMs, connectivity issues can occur, especially when migrating a VM between hosts, because of
 how OVN-Kubernetes handles network addresses.
 
+### Primary Network
+Primary networks handle default traffic for pods. When pods use primary UDNs, the primary interfaces, which are
+commonly designated as eth0, connect directly to those networks. The default gateway for the pod points to
+the UDN, not to the default cluster network.
+
+### Secondary Network
+Secondary networks provide additional interfaces to pods. This configuration is useful when a pod needs to
+connect to a specific isolated network and to maintain connectivity to default cluster services on the primary
+network interface. Secondary UDNs are typically used for specialized workloads that require access to specific
+network segments, such as databases or applications with strict security requirements.
+
 ## UDN layer3
 ```
 apiVersion: k8s.ovn.org/v1
