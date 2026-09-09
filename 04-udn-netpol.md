@@ -41,6 +41,20 @@ Overlapping IP address ranges:
 
 Persistent IP addresses for virtual machines:
 
+### Network Topologies for User-defined Networks
+
+Cluster administrators can configure primary networks as layer 2 or layer 3 network types by using UDNs. This flexibility
+enables diverse network topologies and use cases, from simple flat networks to more complex segmented
+architectures. Layer 2 UDNs provide a flat network topology where all pods are on the same broadcast domain. Layer 3
+UDNs create isolated routing domains for each network, to enable overlapping IP address spaces and enhanced
+security through routing policies.
+
+**Note:** Although Layer 3 UDN networks perform seamlessly for containerized applications, the implementation is not
+ideal for VM-based applications. When deploying VMs within a UDN, Red Hat recommends configuring the
+primary network as a Layer 2 network to ensure proper routing, addressing, and isolation. By using a Layer 3
+network for VMs, connectivity issues can occur, especially when migrating a VM between hosts, because of
+how OVN-Kubernetes handles network addresses.
+
 ## UDN layer3
 ```
 apiVersion: k8s.ovn.org/v1
