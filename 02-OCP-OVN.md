@@ -163,6 +163,8 @@ or between a pod and a service. The external network traffic occurs for ingress 
 
 -> Corresponds to network traffic that is handled within the Kubernetes cluster.
 
+-> pod-to-pod and service to service traffic flow
+
 -> The internal network bridge (br-int) handles the traffic.
 
 -> OVN-Kubernetes uses Geneve tunnels to encapsulate traffic between different cluster nodes.
