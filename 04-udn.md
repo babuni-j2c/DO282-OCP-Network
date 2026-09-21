@@ -115,7 +115,7 @@ spec:
 
 ## Pratical
 
-**1) Create 2 Project with Network label**
+**01) Create 2 Project with Network label**
 ```
 apiVersion: v1
 kind: Namespace
@@ -138,7 +138,7 @@ $ oc get project
 $ oc get namespace namespace-blue namespace-green --show-labels
 ```
 
-**2) UDN-Blue**
+**02) UDN-Blue**
 
 ```
 apiVersion: k8s.ovn.org/v1
@@ -154,7 +154,7 @@ spec:
     - cidr: 10.100.0.0/16
 ```
 
-**3) UDN-Green**
+**03) UDN-Green**
 
 ```
 apiVersion: k8s.ovn.org/v1
@@ -178,4 +178,47 @@ $ oc describe userdefinednetwork udn-blue -n namespace-blue
 $ oc describe userdefinednetwork udn-blue -n namespace-green
 ```
 
-**Create the Application on both project**
+**04) Create the Application on both project**
+
+```
+$ oc new-app --name blue httpd -n namespace-blue
+$ oc new-app --name green httpd -n namespace-green
+```
+**05) Get the IP address for udn**
+```
+$ oc describe po -n namespace-blue
+$ oc describe po -n namespace-green
+```
+
+```
+Name: app-blue
+Namespace: namespace-blue
+...output omitted...
+"name": "ovn-kubernetes",
+"interface" "eth0"
+"ips": [
+"10.9.0.31"
+...output omitted...
+"name": "ovn-kubernetes",
+"interface" "ovn-udn1"
+"ips": [
+"10.100.0.9"
+],
+...output omitted...
+```
+```
+Name: app-green
+Namespace: namespace-green
+...output omitted...
+"name": "ovn-kubernetes",
+"interface" "eth0"
+"ips": [
+"10.9.0.32"
+...output omitted...
+"name": "ovn-kubernetes",
+"interface" "ovn-udn1"
+"ips": [
+"10.200.0.4"
+],
+...output omitted...
+```
