@@ -222,3 +222,21 @@ Namespace: namespace-green
 ],
 ...output omitted...
 ```
+
+**06) Test the Network connectivity between Blue and Green. it should not work**
+
+```
+BLUE_IP=10.100.0.9
+GREEN_IP=10.200.0.4
+
+$ oc exec blue -n namespace-blue -- curl --connect-timeout 5 $GREEN_IP
+$ oc exec green -n namespace-green -- curl --connect-timeout 5 $BLUE_IP
+```
+
+**07) Ensure that these applications can still reach the cluster API server and other cluster services on the defaultcluster network.**
+
+```
+$ oc get svc -n default
+$ oc -n namespace-green|blue rsh <po> curl -v telnet://kubernetes.default.svc.cluster.local:443
+$  oc -n namespace-green|blue rsh <po> curl -v telnet://api.ns-tes.cloud-lab.j2ctechnologies.intern:6443
+```
