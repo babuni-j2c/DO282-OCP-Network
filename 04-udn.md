@@ -91,10 +91,15 @@ applications and VMs use only the primary UDN for their network connectivity.
 
 **As a result, the following management features are limited:**
 -> The virtctl ssh command does not function because it relies on the default pod networking routes to connect.
+
 -> Standard internal services for the cluster that depend on the default pod network become unreachable unless you specifically configure those services within the UDN.
+
 -> If ingress and egress traffic patterns rely on default cluster network behavior, then you might need to configure the patterns manually.
+
 -> You cannot use the oc port-forward command to forward ports to a VM.
+
 -> You cannot use headless services to access a VM.
+
 -> You cannot define readiness and liveness probes to configure VM health checks when you use the l2bridge binding.
 
 ## UDN layer3
