@@ -19,3 +19,23 @@ metadata:
     k8s.ovn.org/primary-user-defined-network: ""
 ```
 <img width="819" height="506" alt="image" src="https://github.com/user-attachments/assets/8834eed0-395f-4337-bb51-9fb6ac0e423f" />
+
+
+```
+apiVersion: k8s.ovn.org/v1
+kind: ClusterUserDefinedNetwork
+metadata:
+  name: development-cudn
+spec:
+  namespaceSelector:
+    matchLabels:
+      environment: development
+  network:
+    topology: Layer2
+    layer2:
+      role: Primary
+      subnets:
+      - "10.100.0.0/16"
+      ipam:
+        lifecycle: Persistent
+```
