@@ -111,3 +111,71 @@ spec:
   - name: my-app-container
     image: my-app-image
 ```
+
+
+## Pratical
+
+**1) Create 2 Project with Network label**
+```
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: namespace-blue
+  labels:
+    k8s.ovn.org/primary-user-defined-network: ""
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: namespace-green
+  labels:
+    k8s.ovn.org/primary-user-defined-network: ""
+```
+
+```
+$ oc apply -f namespaces.yaml
+$ oc get project
+$ oc get namespace namespace-blue namespace-green --show-labels
+```
+
+**2) UDN-Blue**
+
+```
+apiVersion: k8s.ovn.org/v1
+kind: UserDefinedNetwork
+metadata:
+  name: udn-blue
+  namespace: namespace-blue
+spec:
+  topology: Layer3
+  layer3:
+    role: Primary
+    subnets:
+    - cidr: 10.100.0.0/16
+```
+
+**3) UDN-Green**
+
+```
+apiVersion: k8s.ovn.org/v1
+kind: UserDefinedNetwork
+metadata:
+  name: udn-green
+  namespace: namespace-green
+spec:
+  topology: Layer3
+  layer3:
+    role: Primary
+    subnets:
+    - cidr: 10.200.0.0/16
+```
+
+```
+$ oc get userdefinednetwork -n namespace-blue
+$ oc get userdefinednetwork -n namespace-blue
+
+$ oc describe userdefinednetwork udn-blue -n namespace-blue
+$ oc describe userdefinednetwork udn-blue -n namespace-green
+```
+
+**Create the Application on both project**
