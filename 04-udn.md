@@ -74,13 +74,10 @@ across all cluster nodes, which enables VMs to retain their IP addresses during 
 
 **Layer 2 UDNs provide the following benefits for VM workloads:**
 
--> Persistent IP addresses during live migration and across reboots
-
--> Network isolation between tenants without physical infrastructure changes
-
--> Overlay networking that works in cloud environments without VLAN access
-
--> Support for overlapping IP address ranges across different namespaces
+-> Persistent IP addresses during live migration and across reboots<br>
+-> Network isolation between tenants without physical infrastructure changes<br>
+-> Overlay networking that works in cloud environments without VLAN access<br>
+-> Support for overlapping IP address ranges across different namespaces<br>
 
 ## Limitations of Primary UDNs with VMs
 Although primary UDNs provide significant benefits, their implementation involves trade-offs for standard cluster
@@ -90,16 +87,12 @@ Although the pod retains the eth0 interface for infrastructure communication wit
 applications and VMs use only the primary UDN for their network connectivity.
 
 **As a result, the following management features are limited:**
--> The virtctl ssh command does not function because it relies on the default pod networking routes to connect.
-
--> Standard internal services for the cluster that depend on the default pod network become unreachable unless you specifically configure those services within the UDN.
-
--> If ingress and egress traffic patterns rely on default cluster network behavior, then you might need to configure the patterns manually.
-
+-> The virtctl ssh command does not function because it relies on the default pod networking routes to connect.<br>
+-> Standard internal services for the cluster that depend on the default pod network become unreachable unless you specifically configure those services within the UDN.<br>
+-> If ingress and egress traffic patterns rely on default cluster network behavior, then you might need to configure the patterns manually.<br>
 -> You cannot use the oc port-forward command to forward ports to a VM.<br>
--> You cannot use headless services to access a VM.
-
--> You cannot define readiness and liveness probes to configure VM health checks when you use the l2bridge binding.
+-> You cannot use headless services to access a VM.<br>
+-> You cannot define readiness and liveness probes to configure VM health checks when you use the l2bridge binding.<br>
 
 ## UDN layer3
 ```
