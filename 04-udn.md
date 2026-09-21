@@ -82,6 +82,21 @@ across all cluster nodes, which enables VMs to retain their IP addresses during 
 
 -> Support for overlapping IP address ranges across different namespaces
 
+## Limitations of Primary UDNs with VMs
+Although primary UDNs provide significant benefits, their implementation involves trade-offs for standard cluster
+features. When you define a primary UDN for a namespace, workloads in that namespace can no longer access the
+default pod network. The primary UDN replaces the default cluster network for workloads within the namespace.
+Although the pod retains the eth0 interface for infrastructure communication with the cluster (such as kubelet),
+applications and VMs use only the primary UDN for their network connectivity.
+
+**As a result, the following management features are limited:**
+-> The virtctl ssh command does not function because it relies on the default pod networking routes to connect.
+-> Standard internal services for the cluster that depend on the default pod network become unreachable unless you specifically configure those services within the UDN.
+-> If ingress and egress traffic patterns rely on default cluster network behavior, then you might need to configure the patterns manually.
+-> You cannot use the oc port-forward command to forward ports to a VM.
+-> You cannot use headless services to access a VM.
+-> You cannot define readiness and liveness probes to configure VM health checks when you use the l2bridge binding.
+
 ## UDN layer3
 ```
 apiVersion: k8s.ovn.org/v1
