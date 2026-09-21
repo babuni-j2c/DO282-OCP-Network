@@ -66,7 +66,7 @@ connect to a specific isolated network and to maintain connectivity to default c
 network interface. Secondary UDNs are typically used for specialized workloads that require access to specific
 network segments, such as databases or applications with strict security requirements.
 
-### Layer2 VS Layer3 UDN network
+### Layer2 VS Layer3 UDN network | CNV-VM
 OVN-Kubernetes supports both Layer 2 and Layer 3 primary UDN topologies, but VMs require Layer 2. In a Layer 3
 topology, each node receives a distinct subnet, so a VM that migrates to a new node must change its IP address. This IP
 address change drops active TCP sessions and breaks live migration. Layer 2 UDNs create a single flat logical switch
