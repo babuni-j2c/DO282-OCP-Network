@@ -86,7 +86,7 @@ default pod network. The primary UDN replaces the default cluster network for wo
 Although the pod retains the eth0 interface for infrastructure communication with the cluster (such as kubelet),
 applications and VMs use only the primary UDN for their network connectivity.
 
-**As a result, the following management features are limited:**
+**As a result, the following management features are limited:** <br>
 -> The virtctl ssh command does not function because it relies on the default pod networking routes to connect.<br>
 -> Standard internal services for the cluster that depend on the default pod network become unreachable unless you specifically configure those services within the UDN.<br>
 -> If ingress and egress traffic patterns rely on default cluster network behavior, then you might need to configure the patterns manually.<br>
