@@ -72,8 +72,7 @@ topology, each node receives a distinct subnet, so a VM that migrates to a new n
 address change drops active TCP sessions and breaks live migration. Layer 2 UDNs create a single flat logical switch
 across all cluster nodes, which enables VMs to retain their IP addresses during live migration and across reboots.
 
-**Layer 2 UDNs provide the following benefits for VM workloads:**
-
+**Layer 2 UDNs provide the following benefits for VM workloads:** <br>
 -> Persistent IP addresses during live migration and across reboots<br>
 -> Network isolation between tenants without physical infrastructure changes<br>
 -> Overlay networking that works in cloud environments without VLAN access<br>
