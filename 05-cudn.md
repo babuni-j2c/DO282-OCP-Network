@@ -18,3 +18,4 @@ metadata:
   labels:
     k8s.ovn.org/primary-user-defined-network: ""
 ```
+<img width="819" height="506" alt="image" src="https://github.com/user-attachments/assets/8834eed0-395f-4337-bb51-9fb6ac0e423f" />
