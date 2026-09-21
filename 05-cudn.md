@@ -54,3 +54,20 @@ spec:
           - tenant1
           - tenant2
 ```
+```
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: tenant1
+  labels:
+    environment: development
+    k8s.ovn.org/primary-user-defined-network: ""
+--
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: tenant2
+  labels:
+    environment: development
+    k8s.ovn.org/primary-user-defined-network: ""
+```
