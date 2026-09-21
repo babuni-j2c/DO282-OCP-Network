@@ -21,7 +21,9 @@ metadata:
 
 <img width="819" height="506" alt="image" src="https://github.com/user-attachments/assets/8834eed0-395f-4337-bb51-9fb6ac0e423f" />
 
+## Pratical
 
+**Create CUDN**
 ```
 apiVersion: k8s.ovn.org/v1
 kind: ClusterUserDefinedNetwork
@@ -54,6 +56,7 @@ spec:
           - tenant1
           - tenant2
 ```
+**Create Project**
 ```
 apiVersion: v1
 kind: Namespace
@@ -70,4 +73,18 @@ metadata:
   labels:
     environment: development
     k8s.ovn.org/primary-user-defined-network: ""
+```
+
+**Deploy the Application on both project** 
+
+```
+$ oc new-app --name test1 -n namespace-1
+$ oc new-app --name test2 -n namespace-2
+```
+**Connection test and validation**
+```
+$ oc describe po -n namespace-1
+$ oc describe po -n namespace-2
+# get the IP address
+$ oc -n namespace-1 rsh po curl -v telnet://ip:port
 ```
