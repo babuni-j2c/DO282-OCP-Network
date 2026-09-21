@@ -96,8 +96,7 @@ applications and VMs use only the primary UDN for their network connectivity.
 
 -> If ingress and egress traffic patterns rely on default cluster network behavior, then you might need to configure the patterns manually.
 
--> You cannot use the oc port-forward command to forward ports to a VM.
-
+-> You cannot use the oc port-forward command to forward ports to a VM.<br>
 -> You cannot use headless services to access a VM.
 
 -> You cannot define readiness and liveness probes to configure VM health checks when you use the l2bridge binding.
